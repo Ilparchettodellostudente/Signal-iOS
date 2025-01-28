@@ -15,6 +15,8 @@ public enum RegistrationStep: Equatable {
 
     // MARK: - Actually registering
 
+    case speechToText(RegistrationSpeechToTextState)
+    
     /// The user should enter or confirm their phone number.
     /// The number may be pre-filled or empty; either way we will require
     /// the user to confirm the number at least once before proceeding.
@@ -121,6 +123,7 @@ public enum RegistrationStep: Equatable {
 
     public var logSafeString: String {
         switch self {
+        case .speechToText: return "speechToText"
         case .registrationSplash: return "registrationSplash"
         case .changeNumberSplash: return "changeNumberSplash"
         case .permissions: return "permissions"

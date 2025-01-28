@@ -19,6 +19,26 @@ public protocol RegistrationCoordinatorLoaderDelegate: AnyObject {
 }
 
 public class RegistrationCoordinatorImpl: RegistrationCoordinator {
+    public func completeSpeechToText() -> Guarantee<RegistrationStep> {
+        db.write { tx in
+            updatePersistedState(tx) {
+                $0.hasCompletedSpeechToText = true
+            }
+        }
+        inMemoryState.hasShownSpeechToText = true
+        return nextStep()
+    }
+
+    public func skipSpeechToText() -> Guarantee<RegistrationStep> {
+        db.write { tx in
+            updatePersistedState(tx) {
+                $0.hasSkippedSpeechToText = true
+            }
+        }
+        inMemoryState.hasShownSpeechToText = true
+        return nextStep()
+    }
+    
 
     /// Only `RegistrationCoordinatorLoaderImpl` can create a nested `Mode` instance,
     /// so only it can create this class. If you want an instance, use `RegistrationCoordinatorLoaderImpl`.
@@ -92,6 +112,11 @@ public class RegistrationCoordinatorImpl: RegistrationCoordinator {
         }
     }
 
+    public func completeHelloWorld() -> Guarantee<RegistrationStep> {
+        inMemoryState.hasShownSpeechToText = true
+        return nextStep()
+    }
+    
     public func continueFromSplash() -> Guarantee<RegistrationStep> {
         Logger.info("")
 
@@ -574,7 +599,8 @@ public class RegistrationCoordinatorImpl: RegistrationCoordinator {
     /// it is wiped if the app is evicted from memory or registration is completed.
     private struct InMemoryState {
         var hasRestoredState = false
-
+        var hasShownSpeechToText = false
+        
         var tsRegistrationState: TSRegistrationState?
 
         // Whether some system permissions (contacts, APNS) are needed.
@@ -690,6 +716,9 @@ public class RegistrationCoordinatorImpl: RegistrationCoordinator {
     /// Note: `mode` is kept separate; it has a different lifecycle than the rest
     /// of PersistedState even though it is also persisted to disk.
     internal struct PersistedState: Codable {
+        var hasCompletedSpeechToText = false
+        var hasSkippedSpeechToText = false
+        
         /// We only ever want to show the splash once.
         var hasShownSplash = false
         var shouldSkipRegistrationSplash = false
@@ -1247,6 +1276,11 @@ public class RegistrationCoordinatorImpl: RegistrationCoordinator {
         if let splashStep = splashStepToShow() {
             return .value(splashStep)
         }
+        
+        if !inMemoryState.hasShownSpeechToText {
+            return .value(.speechToText(RegistrationSpeechToTextState()))
+        }
+        
         if inMemoryState.needsSomePermissions {
             // This class is only used for primary device registration
             // which always needs contacts permissions.

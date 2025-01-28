@@ -131,6 +131,20 @@ public class RegistrationNavigationController: OWSNavigationController {
 
     private func controller(for step: RegistrationStep) -> AnyController? {
         switch step {
+        case .speechToText(let state):
+            return Controller(
+                type: RegistrationSpeechToTextViewController.self,
+                make: { presenter in
+                    return RegistrationSpeechToTextViewController(
+                        state: state,
+                        presenter: presenter
+                    )
+                },
+                update: { controller in
+                    controller.updateState(state)
+                    return nil
+                }
+            )
         case .registrationSplash:
             return Controller(
                 type: RegistrationSplashViewController.self,
@@ -417,6 +431,16 @@ public class RegistrationNavigationController: OWSNavigationController {
     private func didRequestToSubmitDebugLogs() {
         DebugLogs.submitLogsWithSupportTag("Registration")
     }
+}
+
+extension RegistrationNavigationController: RegistrationSpeechToTextPresenter {
+    func continueToNextStep() {
+        pushNextController(coordinator.completeSpeechToText())
+    }
+    func skipStep() {
+        pushNextController(coordinator.completeSpeechToText())
+    }
+    
 }
 
 extension RegistrationNavigationController: RegistrationSplashPresenter {

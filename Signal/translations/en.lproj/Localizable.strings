@@ -1,3 +1,8 @@
+"REGISTRATION_SPEECH_TO_TEXT_TITLE" = "Speech to Text";
+"REGISTRATION_SPEECH_TO_TEXT_DESCRIPTION" = "Use speech recognition to register";
+"REGISTRATION_SPEECH_TO_TEXT_SKIP" = "Skip";
+"REGISTRATION_SPEECH_TO_TEXT_CONTINUE" = "Continue";
+
 /* Button text to dismiss missing contacts permission alert */
 "AB_PERMISSION_MISSING_ACTION_NOT_NOW" = "Not Now";
 

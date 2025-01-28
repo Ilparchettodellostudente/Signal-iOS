@@ -9,6 +9,8 @@ public import SignalServiceKit
 /// including re-registration and change number.
 public protocol RegistrationCoordinator {
 
+    func completeSpeechToText() -> Guarantee<RegistrationStep>
+    
     /// Prepare to switch to secondary device linking, if allowed.
     /// If this returns true, state will have been appropriately cleared
     /// in order to proceed to seconday device linking; if not the
