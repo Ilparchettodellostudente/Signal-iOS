@@ -43,8 +43,12 @@ class RegistrationSpeechToTextViewController: OWSViewController {
 }
 
 extension RegistrationSpeechToTextViewController: RegistrationSpeechToTextViewDelegate {
-    func registrationSpeechToTextViewDidTapContinue() {
+    func registrationSpeechToTextViewDidTapContinue(withOption option: RegistrationSpeechToTextView.SpeechToTextOption) {
         presenter?.continueToNextStep()
+    }
+    
+    func registrationSpeechToTextViewDidSelect(option: RegistrationSpeechToTextView.SpeechToTextOption) {
+        print("ciao")
     }
     
     func registrationSpeechToTextViewDidTapSkip() {
