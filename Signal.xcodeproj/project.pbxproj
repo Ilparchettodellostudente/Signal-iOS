@@ -422,6 +422,8 @@
 		34FB6A5325D2D10400E599B1 /* PaymentsViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FB6A5225D2D10400E599B1 /* PaymentsViewUtils.swift */; };
 		34FB6A5525D2E17200E599B1 /* PaymentModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FB6A5425D2E17200E599B1 /* PaymentModelCell.swift */; };
 		34FCCA04264AEDFE00A63EDE /* CustomColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCCA03264AEDFE00A63EDE /* CustomColorViewController.swift */; };
+		3508E2982D62934400BDEDE7 /* SpeechToTextSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3508E2972D62934100BDEDE7 /* SpeechToTextSettings.swift */; };
+		3508E29C2D62952700BDEDE7 /* SpeechToTextOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3508E29B2D62951900BDEDE7 /* SpeechToTextOption.swift */; };
 		35F507272D4BB514003EA8F1 /* RegistrationSpeechToTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F507252D4BB514003EA8F1 /* RegistrationSpeechToTextView.swift */; };
 		35F507282D4BB514003EA8F1 /* RegistrationSpeechToTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F507262D4BB514003EA8F1 /* RegistrationSpeechToTextViewController.swift */; };
 		4503F1BE20470A5B00CEE724 /* classic-quiet.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 4503F1BB20470A5B00CEE724 /* classic-quiet.aifc */; };
@@ -4150,6 +4152,8 @@
 		34FB6A5425D2E17200E599B1 /* PaymentModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentModelCell.swift; sourceTree = "<group>"; };
 		34FC7EEB265834F30046707A /* AvatarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarBuilder.swift; sourceTree = "<group>"; };
 		34FCCA03264AEDFE00A63EDE /* CustomColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColorViewController.swift; sourceTree = "<group>"; };
+		3508E2972D62934100BDEDE7 /* SpeechToTextSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextSettings.swift; sourceTree = "<group>"; };
+		3508E29B2D62951900BDEDE7 /* SpeechToTextOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextOption.swift; sourceTree = "<group>"; };
 		35F507252D4BB514003EA8F1 /* RegistrationSpeechToTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSpeechToTextView.swift; sourceTree = "<group>"; };
 		35F507262D4BB514003EA8F1 /* RegistrationSpeechToTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSpeechToTextViewController.swift; sourceTree = "<group>"; };
 		39B85AE8CD37B05A1B144605 /* Pods_SignalShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SignalShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -13852,6 +13856,8 @@
 		F9C5CAF8289453B200548EEE /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				3508E29B2D62951900BDEDE7 /* SpeechToTextOption.swift */,
+				3508E2972D62934100BDEDE7 /* SpeechToTextSettings.swift */,
 				720547F12B9C8F5E00E2CF2F /* Avatars */,
 				661BFE082C07FB640065435B /* ImageMetadata */,
 				C1A0F7A52BA0A11E0009DC0D /* StreamTransform */,
@@ -17565,12 +17571,14 @@
 				F9C5CC89289453B300548EEE /* OWSOutgoingSenderKeyDistributionMessage.m in Sources */,
 				F9C5CBC2289453B300548EEE /* OWSOutgoingSentMessageTranscript.m in Sources */,
 				C16B8B752B8940D40030BA24 /* OWSOutgoingSentMessageTranscript.swift in Sources */,
+				3508E29C2D62952700BDEDE7 /* SpeechToTextOption.swift in Sources */,
 				F9C5CBB7289453B300548EEE /* OWSOutgoingSyncMessage.m in Sources */,
 				6642A87A2A8D85F500E591C2 /* OWSPaymentActivationRequestFinishedMessage+SDS.swift in Sources */,
 				6642A8722A8D7C5700E591C2 /* OWSPaymentActivationRequestFinishedMessage.m in Sources */,
 				6642A8792A8D85F500E591C2 /* OWSPaymentActivationRequestMessage+SDS.swift in Sources */,
 				6642A8762A8D80F400E591C2 /* OWSPaymentActivationRequestMessage.m in Sources */,
 				72C9058D2B9AC81B00E586B8 /* OWSPaymentsLock.swift in Sources */,
+				3508E2982D62934400BDEDE7 /* SpeechToTextSettings.swift in Sources */,
 				F9C5CC32289453B300548EEE /* OWSProfileKeyMessage.m in Sources */,
 				724D47B82B97C301001BE973 /* OWSProfileManager.swift in Sources */,
 				66A830442CEBFCC700A7656D /* OWSProgress.swift in Sources */,
