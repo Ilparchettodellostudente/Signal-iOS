@@ -9,44 +9,6 @@ import SignalUI
 
 class RegistrationSpeechToTextView: UIView {
     
-    enum SpeechToTextOption: String, CaseIterable {
-        case native = "Native"
-        case base = "Base"
-        case medium = "Medium"
-        case high = "High"
-        case custom = "Custom"
-        
-        var description: String {
-            switch self {
-            case .native:
-                return "Integrated into the operating system"
-            case .base:
-                return "Light and fast"
-            case .medium:
-                return "Balanced between accuracy and performance"
-            case .high:
-                return "Greater accuracy"
-            case .custom:
-                return "Manual choice"
-            }
-        }
-        
-        var downloadSize: String {
-            switch self {
-            case .native:
-                return "No download required"
-            case .base:
-                return "~50MB"
-            case .medium:
-                return "~150MB"
-            case .high:
-                return "~300MB"
-            case .custom:
-                return "Size varies"
-            }
-        }
-    }
-    
     private var selectedOption: SpeechToTextOption = .native {
         didSet {
             updateDownloadLabel()
@@ -216,15 +178,22 @@ class RegistrationSpeechToTextView: UIView {
     }
     
     private func updateDownloadLabel() {
+        print("""
+            Speech-to-text settings updated:
+            Option: \(selectedOption.rawValueù)
+            Description: \(selectedOption.description)
+            Download Size: \(selectedOption.downloadSize)
+            """)
+        
         switch selectedOption {
-        case .native:
-            downloadLabel.text = "No download required"
-        default:
-            let baseText = "The selected model (\(selectedOption.downloadSize)) will be downloaded in the background"
-            let text = selectedOption == .custom ?
-                      "\(baseText)\nYou can change the model settings later" :
-                      baseText
-            downloadLabel.text = text
+            case .native:
+                downloadLabel.text = "No download required"
+            default:
+                let baseText = "The selected model (\(selectedOption.downloadSize)) will be downloaded in the background"
+                let text = selectedOption == .custom ?
+                          "\(baseText)\nYou can change the model settings later" :
+                          baseText
+                downloadLabel.text = text
         }
     }
     
@@ -256,6 +225,7 @@ class RegistrationSpeechToTextView: UIView {
 }
 
 protocol RegistrationSpeechToTextViewDelegate: AnyObject {
-    func registrationSpeechToTextViewDidTapContinue(withOption option: RegistrationSpeechToTextView.SpeechToTextOption)
+    func registrationSpeechToTextViewDidTapContinue(withOption option: SpeechToTextOption)
+    func registrationSpeechToTextViewDidSelect(option: SpeechToTextOption)
     func registrationSpeechToTextViewDidTapSkip()
 }
